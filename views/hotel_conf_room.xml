@@ -1,0 +1,89 @@
+<odoo>
+    <!-- Form View for Hotel Room -->
+    <record id="view_hotel_room_form" model="ir.ui.view">
+        <field name="name">hotel.room.form</field>
+        <field name="model">hotel.room</field>
+        <field name="arch" type="xml">
+            <form string="Rooms">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="available,reserved,occupied"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="attachment" widget="image" options="{'max_width': 1024, 'max_height': 1024}"/>
+                        </group>
+                    </group>
+
+                    <!-- Tabs -->
+                    <notebook>
+                        <!-- Information Tab -->
+                        <page string="Information">
+                            <group>
+                                <group>
+                                    <field name="floor_id"/>
+                                    <field name="manager" widget="many2one"/>
+                                    <field name="room_type"/>
+                                </group>
+
+                                <group>
+                                    <field name="rent"/>
+                                    <field name="number_of_persons"/>
+                                    <field name="cost"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <!-- Amenities Tab -->
+                            <page string="Amenities">
+                                <field name="amenity_ids">
+                                    <tree editable="bottom" create="true" delete="true" edit="true">
+                                        <field name="amenity_id" />
+                                        <field name="quantity" />
+                                        <field name="price"/>
+                                        <field name="subtotal" />
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="amenity_id"/>
+                                            <field name="quantity"/>
+                                            <field name="price"/>
+                                            <field name="subtotal" readonly="1"/>
+                                        </group>
+                                    </form>
+                                </field>
+                                <group>
+                                    <field name="grand_total" readonly="1"/>
+                                </group>
+                            </page> 
+
+                            <!-- Description Tab -->
+                            <page string="Description">
+                                <group>
+                                    <field name="description" widget="textarea"/>
+                                </group>
+                            </page>
+                        </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View for Hotel Room -->
+    <record id="view_hotel_room_tree" model="ir.ui.view">
+        <field name="name">hotel.room.tree</field>
+        <field name="model">hotel.room</field>
+        <field name="arch" type="xml">
+            <tree string="Rooms">
+                <field name="name"/>
+                <field name="floor_id"/>
+                <field name="room_type"/>
+                <field name="rent"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+<odoo>
+    <record id="action_report_reservation" model="ir.actions.report">
+        <field name="name">Reservation Report</field>
+        <field name="model">hotel.reservation.folio</field>
+        <field name="report_name">hotel_management.report_reservation_template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

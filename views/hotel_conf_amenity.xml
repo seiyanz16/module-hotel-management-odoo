@@ -1,0 +1,56 @@
+<odoo>
+    <!-- record view amenities form -->
+
+    <record id="view_hotel_amenity_form" model="ir.ui.view">
+        <field name="name">hotel.amenity.form</field>
+        <field name="model">hotel.amenity</field>
+        <field name="arch" type="xml">
+            <form string="Amenities">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="icon" widget="image"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- record view amenities kanban  -->
+      <record id="view_hotel_amenities_kanban" model="ir.ui.view">
+        <field name="name">hotel.amenity.kanban</field>
+        <field name="model">hotel.amenity</field>
+        <field name="arch" type="xml">
+            <kanban string="Hotel Amenities">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <!-- Use the image widget -->
+                                <field name="icon" widget='image' class="oe_kanban_image"/>
+                            </div>
+                            <div class="o_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- record view amenities tree -->
+
+    <record id="view_hotel_amenity_tree" model="ir.ui.view">
+        <field name="name">hotel.amenity.tree</field>
+        <field name="model">hotel.amenity</field>
+        <field name="arch" type="xml">
+            <tree string="Amenities">
+                <field name="name"/>
+                <field name="icon" widget="image"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

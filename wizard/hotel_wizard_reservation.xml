@@ -1,0 +1,19 @@
+<odoo>
+    <record id="view_hotel_reservation_report_wizard" model="ir.ui.view">
+        <field name="name">hotel.reservation.report.wizard.form</field>
+        <field name="model">hotel.reservation.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Hotel Reservation Report">
+                <group>
+                    <field name="checkin_date"/>
+                    <field name="checkout_date"/>
+                    <field name="room_id"/>
+                </group>
+                <footer>
+                    <button string="Print PDF" type="object" name="action_print_report" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

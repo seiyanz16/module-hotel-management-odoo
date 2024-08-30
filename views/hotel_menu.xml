@@ -1,0 +1,90 @@
+<odoo>
+    <!-- menu items -->
+
+    <menuitem id="menu_hotel_root" name="Hotel" sequence="100"/>
+
+    <!-- reservation menu -->
+    <record id="action_hotel_reservation" model="ir.actions.act_window">
+        <field name="name">Reservation</field>
+        <field name="res_model">hotel.reservation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a new reservation
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hotel_reservation" name="Reservation" parent="menu_hotel_root" action="action_hotel_reservation" sequence="10"/>
+
+    <!-- report menu -->
+    <menuitem id="menu_hotel_reservation_report" name="Reports" parent="menu_hotel_root" sequence="20"/>
+
+    <record id="action_hotel_reservation_report_wizard" model="ir.actions.act_window">
+        <field name="name">Reservation Report</field>
+        <field name="res_model">hotel.reservation.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_hotel_reservation_report_wizard" name="Reservation Report" parent="menu_hotel_reservation_report" action="action_hotel_reservation_report_wizard" sequence="10"/>
+    
+    <!--configuration menu  -->
+    <menuitem id="menu_hotel_configuration" name="Configuration" parent="menu_hotel_root" sequence="50"/>
+
+    <!-- action for the floors -->
+    <record id="action_hotel_floor" model="ir.actions.act_window">
+        <field name="name">Floors</field>
+        <field name="res_model">hotel.floor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a new floor
+            </p>
+        </field>
+    </record>
+
+    <!-- action for the services -->
+    <record id="action_hotel_service" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">hotel.service</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a new service
+            </p>
+        </field>
+    </record>
+
+    <!-- action for the amenities -->
+    <record id="action_hotel_amenity" model="ir.actions.act_window">
+        <field name="name">Amenities</field>
+        <field name="res_model">hotel.amenity</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a new amenity
+            </p>
+        </field>
+    </record>
+
+    <!-- action for the room  -->
+    <record id="action_hotel_room" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="res_model">hotel.room</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a new room
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hotel_floor" name="Floors" parent="menu_hotel_configuration" action="action_hotel_floor" sequence="20"/>
+
+    <menuitem id="menu_hotel_service" name="Services" parent="menu_hotel_configuration" action="action_hotel_service" sequence="30"/>
+
+    <menuitem id="menu_hotel_amenity" name="Amenities" parent="menu_hotel_configuration" action="action_hotel_amenity" sequence="40"/>
+
+    <menuitem id="menu_hotel_room" name="Rooms" parent="menu_hotel_configuration" action="action_hotel_room" sequence="50"/>
+</odoo>

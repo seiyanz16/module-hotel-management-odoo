@@ -1,0 +1,31 @@
+<odoo>
+ <!-- record view services form -->
+
+    <record id="view_hotel_service_form" model="ir.ui.view">
+        <field name="name">hotel.service.form</field>
+        <field name="model">hotel.service</field>
+        <field name="arch" type="xml">
+            <form string="Services">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- record view services tree -->
+
+    <record id="view_hotel_service_tree" model="ir.ui.view">
+        <field name="name">hotel.service.tree</field>
+        <field name="model">hotel.service</field>
+        <field name="arch" type="xml">
+            <tree string="Services">
+                <field name="name"/>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

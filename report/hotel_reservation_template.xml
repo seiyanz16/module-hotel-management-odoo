@@ -1,0 +1,44 @@
+<odoo>
+    <template id="report_reservation_template">
+        <t t-call="web.external_layout">
+            <main>
+                <div class="page">
+                    <h2>Room Booking Report</h2>
+
+                    <table class="table table-sm table-hover" style="width: 100%; border: 1px solid black;">
+                        <thead>
+                            <tr style="background-color: #f2f2f2;">
+                                <th style="border: 1px solid black;">Sl No.</th>
+                                <th style="border: 1px solid black;">Guest Name</th>
+                                <th style="border: 1px solid black;">Room No.</th>
+                                <th style="border: 1px solid black;">Check-In</th>
+                                <th style="border: 1px solid black;">Check-Out</th>
+                                <th style="border: 1px solid black;">Reference No.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="sl_no" t-value="1"/>
+                            <t t-foreach="docs" t-as="line">
+                                <tr>
+                                    <td style="border: 1px solid black;"><t t-esc="sl_no"/></td>
+                                    <td style="border: 1px solid black;"><t t-esc="line.reservation_id.customer.name"/></td>
+                                    <td style="border: 1px solid black;"><t t-esc="line.room_id.name"/></td>
+                                    <td style="border: 1px solid black;"><t t-esc="line.checkin"/></td>
+                                    <td style="border: 1px solid black;"><t t-esc="line.checkout"/></td>
+                                    <td style="border: 1px solid black;"><t t-esc="line.reservation_id.reservation_code"/></td>
+                                </tr>
+                                <t t-set="sl_no" t-value="sl_no + 1"/>
+                            </t>
+                        </tbody>
+                    </table>
+                    
+                    <div class="footer" style="margin-top: 20px;">
+                        <p>My Company</p>
+                        <p>Indonesia</p>
+                        <p>923048203 admin@mail.com</p>
+                    </div>
+                </div>
+            </main>
+        </t>
+    </template>
+</odoo>
