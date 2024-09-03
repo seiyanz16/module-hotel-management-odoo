@@ -55,9 +55,10 @@
                                         </group>
                                     </form>
                                 </field>
-                                <group>
-                                    <field name="grand_total" readonly="1"/>
-                                </group>
+                                <div style="text-align: right; margin-top: 20px; margin-right: 20px;">
+                                    <span class="o_form_label">Total: </span>
+                                    <field name="grand_total" readonly="1" widget="monetary" style="font-weight: bold; font-size: 16px;"/>
+                                </div>
                             </page> 
 
                             <!-- Description Tab -->
@@ -82,7 +83,7 @@
                 <field name="floor_id"/>
                 <field name="room_type"/>
                 <field name="rent"/>
-                <field name="status"/>
+                <field name="status" widget="badge" decoration-warning="status == 'available'" decoration-success="status == 'reserved'" decoration-danger="status == 'occupied'"/>
             </tree>
         </field>
     </record>

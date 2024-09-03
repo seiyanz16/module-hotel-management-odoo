@@ -1,12 +1,4 @@
 <odoo>
-    <record id="seq_hotel_reservation" model="ir.sequence">
-        <field name="name">Hotel Reservation Sequence</field>
-        <field name="code">hotel.reservation</field>
-        <field name="prefix">BOOKING/</field>
-        <field name="padding">5</field>
-        <field name="number_next">1</field>
-        <field name="number_increment">1</field>
-    </record>
     <record id="view_hotel_reservation_form" model="ir.ui.view">
         <field name="name">hotel.reservation.form</field>
         <field name="model">hotel.reservation</field>
@@ -14,11 +6,11 @@
             <form string="Hotel Reservation">
                 <header>
                     <field name="state" widget="statusbar" statusbar_visible="checkin,checkout,done"></field>
-                    <button name="action_reserve" type="object" string="Reserve" class="oe_highlight"/>
-                    <button name="action_checkin" type="object" string="Check In" class="oe_highlight"/>
-                    <button name="action_checkout" type="object" string="Check Out" class="oe_highlight"/>
-                    <button name="action_done" type="object" string="Done" class="oe_highlight"/>
-                    <button name="action_cancel" type="object" string="Cancel" class="oe_link btn-secondary"/>
+                    <button name="action_reserve" type="object" string="Reserve" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_checkin" type="object" string="Check In" class="oe_highlight" invisible="state not in ('confirm')"/>
+                    <button name="action_checkout" type="object" string="Check Out" class="oe_highlight" invisible="state != 'checkin'"/>
+                    <button name="action_done" type="object" string="Done" class="oe_highlight" invisible="state != 'checkout'"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="btn-secondary" invisible="state != 'draft'"/>
                 </header>
                 <sheet>
                     <h1><field name="reservation_code" readonly="1"/></h1>
@@ -55,14 +47,12 @@
                                         </group>
                                     </form>
                             </field>
-                            <group>
-                                <group></group>
-                                <group>
-                                    <field name="grand_total" readonly="1"/>
-                                </group>
-                            </group>
                         </page>
                     </notebook>
+                    <div class="oe_right" style="text-align: right; margin-top: 20px; margin-right: 20px;">
+                        <span class="o_form_label">Total: </span>
+                        <field name="grand_total" readonly="1" widget="monetary" style="font-weight: bold; font-size: 16px;"/>
+                    </div>
                 </sheet>
             </form>
         </field>
@@ -76,8 +66,8 @@
                 <field name="reservation_code"/>
                 <field name="customer"/>
                 <field name="reserve_date"/>
-                <field name="state"/>
                 <field name="grand_total"/>
+                <field name="state" widget="badge" decoration-muted="state == 'draft'" decoration-warning="state == 'confirm'" decoration-info="state == 'checkin'" decoration-primary="state == 'checkout'" decoration-success="state == 'done'" decoration-danger="state == 'cancel'"/>
             </tree>
         </field>
     </record>

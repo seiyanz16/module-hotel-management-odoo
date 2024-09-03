@@ -4,8 +4,7 @@ class HotelReservationRoom(models.Model):
     _name = "hotel.reservation.folio"
     _description = "Hotel Reservation Room"
 
-    reservation_id = fields.Many2one(
-        "hotel.reservation", string="Reservation", required=True, ondelete="cascade")
+    reservation_id = fields.Many2one("hotel.reservation", string="Reservation", required=True, ondelete="cascade")
     room_id = fields.Many2one("hotel.room", string="Room", required=True, ondelete="cascade")
     checkin = fields.Datetime(string="Check-In", required=True)
     checkout = fields.Datetime(string="Check-Out", required=True)
@@ -33,5 +32,9 @@ class HotelReservationRoom(models.Model):
     def _compute_subtotal(self):
         for record in self:
             record.subtotal = record.duration * record.rent
-    
-    
+            
+    # autofill uom with days 
+    @api.onchange('duration')
+    def _onchange_duration(self):
+        if self.duration:
+            self.uom_id = self.env.ref('uom.product_uom_day')
